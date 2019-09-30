@@ -9,13 +9,18 @@ export default new Vuex.Store({
     },
     actions: {
         updateUsername (ctx, username) {
-            console.log(username)
             ctx.commit('updateUsername', username) // mutations中的updateusername
+        },
+        clearUsername (ctx) {
+            ctx.commit('clearUsername')
         }
     },
     mutations: {
         updateUsername (state, username) {
             state.username = username
+        },
+        clearUsername (state, username) {
+            state.username = ''
         }
     }
 })
