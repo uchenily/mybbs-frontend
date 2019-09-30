@@ -1,0 +1,15 @@
+{
+    "token": "f2c03512-4b10-4bac-8598-0e612f83806c",
+    "data": {
+        "list": [{
+            "id": 1001,
+            "name": "section1"
+        },{
+            "id": 1002,
+            "name": "section2"
+        },{
+            "id": 1003,
+            "name": "section3"
+        }]
+    }
+}
