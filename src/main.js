@@ -5,6 +5,10 @@ import App from './App'
 import store from './store' // vuex
 import router from './router'
 
+// 导入样式
+import './assets/style/reset.css'
+import './assets/style/style.css'
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

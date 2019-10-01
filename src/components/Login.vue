@@ -1,9 +1,9 @@
 <template>
 <div>
   <form>
-    用户: <input type='text' v-model='formInfo.username'/>
-    密码: <input type='password' v-model='formInfo.password'/>
-    <button @click='onSubmit()'> 登录 </button>
+    <input type='text' placeholder='用户名' v-model='formInfo.username'/>
+    <input type='password' placeholder='密码' v-model='formInfo.password'/>
+    <button @click='onSubmit()'>登录</button>
   </form>
 </div>
 </template>
@@ -56,4 +56,38 @@ export default {
 </script>
 
 <style scoped>
+form {
+    position: absolute;
+    width: 30%;
+    left: 35%;
+    top: 30%;
+}
+input, button {
+    box-sizing: border-box;
+    width: 100%;
+    display: block;
+    outline-style: none;
+    border: 1px solid #e7e7e7; 
+    margin-bottom: -1px;
+    border-radius: 3px;
+    padding: 13px 14px;
+    font-size: 16px;
+    font-weight: 200;
+    font-family: "Microsoft YaHei";
+}
+button {
+    border-color: #00bdb5;
+    font-weight: 700;
+    background: #00bdb5;
+    color: #fff;
+}
+button:hover {
+    background: #02afa7;
+}
+input:focus {
+    border-color: #00bdb5;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(0,189,181,.5);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(0,189,181,.5)
+}
 </style>

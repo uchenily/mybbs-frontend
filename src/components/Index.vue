@@ -1,18 +1,14 @@
 <template>
   <div>
-    <div v-if='$store.state.username'>
-        <div>欢迎, {{ this.$store.state.username }}</div>
-        <router-link to="/logout"> 注销 </router-link>
-    </div>
-    <div v-else>
-        <router-link to="/login"> 登录 </router-link>
-        <router-link to="/register"> 注册 </router-link>
-    </div>
+    <common-header></common-header>
+    <common-content></common-content>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import commonHeader from './common/Header'
+import commonContent from './common/Content'
 export default {
   name: 'Index',
   data: function() {
@@ -20,6 +16,10 @@ export default {
       token: "fake-token",
       username: ""
     }
+  },
+  components: {
+    commonHeader,
+    commonContent
   },
   methods: {
     getIndexInfo () {
@@ -42,4 +42,7 @@ export default {
 </script>
 
 <style scoped>
+body {
+    background: #f8fafc;
+}
 </style>
