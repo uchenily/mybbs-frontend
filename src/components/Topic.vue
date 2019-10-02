@@ -8,13 +8,25 @@
             <div class='info'>author: {{ topic.author }}</div>
             <div v-html='topic.content'>{{ topic.content }}</div>
         </div>
+        <div class="point">
+            <div class="agree"><span>👍</span>{{ topic.agree }}</div>
+            <div class="disagree"><span>👎</span>{{ topic.disagree }}</div>
+        </div>
+        <div class="comment">
+            <div class="header">留下一条友善的评论吧~</div>
+            <div class="wrapper clearfix">
+                <textarea autofocus></textarea>
+                <button v-if="$store.state.username">提交</button>
+                <button v-else class="disabled">提交</button>
+            </div>
+        </div>
         <div class="reply">
             <div class="header">
                 <div v-if="topic.replies">最新评论:</div>
                 <div v-else>还没有评论哦~</div>
             </div>
             <ul>
-                <div class="wraper">
+                <div class="wrapper">
                     <li v-for="reply in topic.replies">
                         <div class="info clearfix">
                             <div class="user"><router-link :to="'/users/' + reply.user">{{ reply.user }}</router-link></div>
@@ -64,7 +76,9 @@ export default {
                     user: "wanwan",
                     date: "2019-09-27 14:51:23",
                     content: "hello world"
-                }]
+                }],
+                agree: "1.2K",
+                disagree: "109",
             },
             recommand: [{
                 id: 1001,
@@ -103,7 +117,7 @@ export default {
     width: 20%;
     margin-right: 15%;
 }
-.detail, .reply, .post, .recommand {
+.detail, .comment, .point, .reply, .post, .recommand {
     background: #fff;
     border: 1px solid #eee;
     padding: 30px;
@@ -119,38 +133,57 @@ export default {
     font-size: 12px;
     font-weight: 900;
 }
-.reply, .recommand {
+.point {
+    margin-top: -1px;
+}
+.point div {
+    padding: 10px 24px;
+    margin-right: 30px;
+    display: inline-block;
+    background: rgba(0, 189, 181, 0.24);
+}
+.point div span {
+    margin-right: 20px;
+}
+.comment, .reply, .recommand {
     margin-top: 40px;
 }
-.reply .header {
+.comment .wrapper textarea {
+    width: 100%;
+    padding: 0;
+    height: 100px;
+    font-size: 20px;
+    margin: 14px -1px;
+}
+.comment .wrapper button {
+    float: right;
+    padding: 8px 24px;
+}
+.comment .wrapper button.disabled {
+    filter:alpha(Opacity=20);
+    -moz-opacity:0.2;
+    opacity: 0.2;
+}
+.reply .header, .comment .header {
     font-size: 18px;
     font-weight: 600;
 }
-.reply .wraper li {
+.reply .wrapper li {
     border-bottom: 1px dotted #dcebf5;
     padding: 6px 0;
 }
-.reply .wraper .info .user {
+.reply .wrapper .info .user {
     float: left;
 }
-.reply .wraper .info .date {
+.reply .wrapper .info .date {
     float: right;
 }
 .post button {
-    box-sizing: border-box;
     width: 100%;
-    display: block;
-    outline-style: none;
-    border: 1px solid #e7e7e7;
-    margin-bottom: -1px;
-    border-radius: 3px;
     padding: 13px 14px;
     font-size: 16px;
     font-weight: 200;
     font-family: "Microsoft YaHei";
-    border-color: #00bdb5;
-    background: #00bdb5;
-    color: #fff;
 }
 .post button:hover {
     background: #02afa7;

@@ -2,7 +2,7 @@
 <div>
     <common-header></common-header>
     <ul class="wrapper">
-        <li class="category" v-for="category in categories" :style="randomRGB()"><router-link :to="'/categories/' + category.id">{{ category.name }}</router-link></li>
+        <li class="category" v-for="(category, index) in categories" :style="getBackground(index)"><router-link :to="'/categories/' + category.id">{{ category.name }}</router-link></li>
     </ul>
 </div>
 </template>
@@ -47,12 +47,26 @@ export default {
         }
     },
     methods: {
-        randomRGB () {
-            let R = Math.floor(Math.random() * 255);
-            let G = Math.floor(Math.random() * 255);
-            let B = Math.floor(Math.random() * 255);
+        getBackground (index) {
+            let bgList = [
+                "rgb(171, 70, 188)",
+                "rgb(33, 137, 232)",
+                "rgb(250, 148, 3)",
+                "rgb(199, 219, 8)",
+                "rgb(255, 102, 105)",
+                "rgb(217, 27, 97)",
+                "rgb(254, 140, 105)",
+                "rgb(68, 174, 0)",
+                "rgb(240, 185, 30)",
+                "rgb(69, 192, 207)",
+                "rgb(177, 180, 47)",
+                "rgb(221, 44, 0)",
+                "rgb(50, 178, 241)", 
+                "rgb(50, 100, 241)",
+                "rgb(48, 174, 232)"
+            ]
             return {
-              background: 'rgb(' + R + ',' + G + ',' + B + ')'
+              background: bgList[index % bgList.length]
             }
         }
     }

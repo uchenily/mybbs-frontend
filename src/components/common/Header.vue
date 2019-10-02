@@ -5,7 +5,7 @@
             <li><router-link to="/">主页</router-link></li> 
             <li><router-link to="/categories">分类</router-link></li> 
             <li>公告</li> 
-            <li><router-link to="/topics/new">发布</router-link></li> 
+            <li><router-link to="/topic/new">发布</router-link></li> 
             <li>发现</li> 
         </ul>
         <div class='user logout' v-if='$store.state.username'>

@@ -5,6 +5,7 @@ import Login        from '@/components/Login'
 import Logout       from '@/components/Logout'
 import Register     from '@/components/Register'
 import Topic        from '@/components/Topic'
+import TopicNew     from '@/components/TopicNew'
 import Category     from '@/components/Category'
 import Categories   from '@/components/Categories'
 
@@ -32,6 +33,10 @@ export default new Router({
       name: 'Detail',
       component: Topic
     },{
+      path: '/topic/new',
+      name: 'TopicNew',
+      component: TopicNew
+    },{
       path: '/categories',
       name: 'Categories',
       component: Categories
@@ -39,5 +44,5 @@ export default new Router({
       path: '/categories/:id',
       name: 'Category',
       component: Category
-    }]
+    },]
 })
