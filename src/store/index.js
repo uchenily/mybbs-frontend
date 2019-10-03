@@ -5,7 +5,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        username: ''
+        username: "",
+        dashboard: {
+            target: String,
+            items: Array
+        }
     },
     actions: {
         updateUsername (ctx, username) {
@@ -13,6 +17,9 @@ export default new Vuex.Store({
         },
         clearUsername (ctx) {
             ctx.commit('clearUsername')
+        },
+        updateDashboard(ctx, dashboard) {
+            ctx.commit('updateDashboard', dashboard)
         }
     },
     mutations: {
@@ -20,7 +27,10 @@ export default new Vuex.Store({
             state.username = username
         },
         clearUsername (state, username) {
-            state.username = ''
+            state.username = ""
+        },
+        updateDashboard(state, dashboard) {
+            state.dashboard = dashboard
         }
     }
 })

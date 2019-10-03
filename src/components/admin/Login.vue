@@ -2,9 +2,9 @@
 <div>
 <!-- use form element will cause a bug here -->
   <div class="form">
-    <input type='text' placeholder='用户名' v-model='formInfo.username'/>
-    <input type='password' placeholder='密码' v-model='formInfo.password'/>
-    <button @click='login()'>登录</button>
+    <input type='text' placeholder='用户名' v-model='username'/>
+    <input type='password' placeholder='密码' v-model='password'/>
+    <button @click='onSubmit()'>登录</button>
   </div>
 </div>
 </template>
@@ -12,17 +12,15 @@
 <script>
 import axios from 'axios'
 export default {
-  name: 'Login',
+  name: 'Admin',
   data: function() {
     return {
-      formInfo: {
-        username: "",
-        password: ""
-      }
+      username: "",
+      password: ""
     }
   },
   methods: {
-    login () {
+    onSubmit () {
       // let formData = new FormData()
       // for (let key in this.formInfo) {
       //   formData.append(key, this.formInfo[key])
@@ -39,18 +37,21 @@ export default {
       //     console.log(res)
       //   }
       // )
-      axios.get("api/user.json").then(
-        (res) => {
-          // console.log(res)
-          // console.log("token:", res.data.token)
-          let username = res.data.username
-          // let username = this.formInfo.username
-          // console.log("username:", username)
-          this.$store.dispatch('updateUsername', username)
-        }
-      )
+
+      // axios.get("api/user.json").then(
+      //   (res) => {
+      //     // console.log(res)
+      //     // console.log("token:", res.data.token)
+      //     // let username = res.data.username
+      //     let username = this.formInfo.username
+      //     console.log("username:", username)
+      //     this.$store.dispatch('updateUsername', username)
+      //   }
+      // )
+
+      this.$store.dispatch('updateUsername', this.username)
       // 跳转到首页
-      this.$router.push('/')
+      this.$router.push('/admin/')
     }
   }
 }

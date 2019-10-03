@@ -7,46 +7,49 @@
         <div :class="{agree:'agree', active:current=='agree'}" @click="active('agree')">点赞</div>
         <div :class="{trend:'trend', active:current=='trend'}" @click="active('trend')">趋势</div>
     </div>
-    <common-content></common-content>
+    <common-content :items="items"></common-content>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import commonHeader from './common/Header'
-import commonContent from './common/Content'
+import Header from './common/Header'
+import Content from './common/Content'
 export default {
   name: 'Index',
   data: function() {
     return {
-      token: "fake-token",
-      username: "",
-      current: "latest"
+      result: {}
     }
   },
   components: {
-    commonHeader,
-    commonContent
+    CommonHeader: Header,
+    CommonContent: Content
   },
   methods: {
-    getIndexInfo () {
-      axios.get('/api/index.json') 
-      .then(this.getIndexInfoSuccess)
+   active (select) {
+        this.result.current = select 
+    }
+  },
+  computed: {
+    user: function () {
+      return this.result.user
     },
-    getIndexInfoSuccess (result) {
-      result = result.data
-      if (result.token) {
-        this.token = result.token
-      }
-      // console.log("token:", this.token)
+    current: function () {
+      return this.result.current
     },
-    active (select) {
-        this.current = select 
+    items: function () {
+      return this.result.items
     }
   },
   mounted: function () {
-    this.getIndexInfo()
-    this.username = this.$route.query.username
+    axios.get('api/index.json')
+    .then((result) => {
+      result = result.data 
+      if (result.token) {
+        this.result = result.data
+      }
+    })
   }
 }
 </script>

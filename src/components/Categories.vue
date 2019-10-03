@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import commonHeader from './common/Header'
+import Header from './common/Header'
 export default {
     name: "Categories",
     components: {
-        commonHeader
+        CommonHeader: Header
     },
     data: function () {
         return {

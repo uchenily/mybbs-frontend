@@ -1,5 +1,6 @@
 import Vue      from 'vue'
 import Router   from 'vue-router'
+// user
 import Index        from '@/components/Index'
 import Login        from '@/components/Login'
 import Logout       from '@/components/Logout'
@@ -9,10 +10,27 @@ import TopicNew     from '@/components/TopicNew'
 import Category     from '@/components/Category'
 import Categories   from '@/components/Categories'
 
+// admin
+import AdminIndex   from '@/components/admin/Index'
+import AdminLogin   from '@/components/admin/Login'
+import AdminLogout  from '@/components/admin/Logout'
+
 Vue.use(Router)
 
 export default new Router({
   routes: [{
+      path: '/admin',
+      name: 'AdminIndex',
+      component: AdminIndex
+    },{
+      path: '/admin/login',
+      name: 'AdminLogin',
+      component: AdminLogin
+    },{
+      path: '/admin/logout',
+      name: 'AdminLogout',
+      component: AdminLogout
+    },{
       path: '/',
       name: 'Index',
       component: Index

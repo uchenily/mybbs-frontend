@@ -2,6 +2,16 @@
 <div>
     <common-header></common-header>
     <div class="wrapper">
+        <div class="title clearfix"><span>标题</span><input type="text"/></div>
+        <div class="category clearfix">
+            <span>分类</span>
+            <select>
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="fiat">Fiat</option>
+                <option value="audi">Audi</option>
+            </select>
+        </div>
         <textarea placeholder="随便写点什么吧~"></textarea>
         <button>提交</button>
     </div>
@@ -9,11 +19,11 @@
 </template>
 
 <script>
-import commonHeader from './common/Header'
+import Header from './common/Header'
 export default {
     name: "TopicNew",
     components: {
-        commonHeader
+        CommonHeader: Header
     },
     data: function () {
         return {
@@ -46,5 +56,23 @@ export default {
 .wrapper button {
     padding: 12px 24px;
     float: right;
+}
+.title span, .title input, .category span, .category select {
+    display: inline-block;
+    float: left;
+}
+.title, .category {
+    margin-bottom: 12px;
+}
+.title span, .category span {
+    font-weight: 700;
+    margin-right: 20px;
+    line-height: 30px;
+}
+.title input, .category select {
+    width: 60%;
+    height: 30px;
+}
+select {
 }
 </style>

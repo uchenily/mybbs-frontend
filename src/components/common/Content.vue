@@ -18,26 +18,8 @@
 <script>
 export default {
     name: 'Content',
-    data: function () {
-        return {
-            items: [{
-                id: 1001,
-                author: "zhangsan",
-                category: "历史",
-                title: '这是一个测试帖1',
-                latestReply: "写得不错, 继续加油~"
-            },{
-                id: 1002,
-                author: "lisi",
-                category: "情感",
-                title: '这是一个测试帖2'
-            },{
-                id: 1003,
-                author: "wangwu",
-                category: "生活",
-                title: '这是一个测试帖3'
-            }]
-        }
+    props: {
+        items: Array
     }
 }
 </script>
