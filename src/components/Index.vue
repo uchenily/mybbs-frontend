@@ -2,12 +2,12 @@
   <div>
     <common-header></common-header>
     <div class="select clearfix">
-        <div :class="{hot:'hot', active:current=='hot'}" @click="active('hot')">热门</div>
-        <div :class="{latest:'latext', active:current=='latest'}" @click="active('latest')">最新</div>
-        <div :class="{agree:'agree', active:current=='agree'}" @click="active('agree')">点赞</div>
-        <div :class="{trend:'trend', active:current=='trend'}" @click="active('trend')">趋势</div>
+        <div :class="{hot:'hot', active:result.current=='hot'}" @click="active('hot')">热门</div>
+        <div :class="{latest:'latext', active:result.current=='latest'}" @click="active('latest')">最新</div>
+        <div :class="{agree:'agree', active:result.current=='agree'}" @click="active('agree')">点赞</div>
+        <div :class="{trend:'trend', active:result.current=='trend'}" @click="active('trend')">趋势</div>
     </div>
-    <common-content :items="items"></common-content>
+    <common-content :items="result.items"></common-content>
   </div>
 </template>
 
@@ -27,26 +27,20 @@ export default {
     CommonContent: Content
   },
   methods: {
-   active (select) {
-        this.result.current = select 
+    active (select) {
+        axios.get('api/index_' + select + '.json')
+        .then((result) => {
+          if (result.data.token) {
+            this.result = result.data
+          }
+        })
     }
-  },
-  computed: {
-    user: function () {
-      return this.result.user
-    },
-    current: function () {
-      return this.result.current
-    },
-    items: function () {
-      return this.result.items
-    }
+
   },
   mounted: function () {
-    axios.get('api/index.json')
+    axios.get('api/index_latest.json')
     .then((result) => {
-      result = result.data 
-      if (result.token) {
+      if (result.data.token) {
         this.result = result.data
       }
     })

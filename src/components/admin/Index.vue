@@ -15,40 +15,25 @@ export default {
         AdminHeader,
         AdminContent
     },
+    data: function () {
+        return {
+            result: {}
+        }
+    },
     mounted: function () {
         if (!this.$store.state.username) {
             this.$router.push('/admin/login')
             return;
         }
-        let target =  "category"
-        let items = [{
-            id: 1001,
-            name: "生活",
-            description: "这是对分类的描述信息",
-            action: ["delete", "update"]
-        },{
-            id: 1002,
-            name: "生活",
-            description: "这是对分类的描述信息",
-            action: ["delete", "update"]
-        },{
-            id: 1003,
-            name: "生活",
-            description: "这是对分类的描述信息",
-            action: ["delete", "update"]
-        },{
-            id: 1004,
-            name: "生活",
-            description: "这是对分类的描述信息",
-            action: ["delete", "update"]
-        },{
-            id: 1005,
-            name: "生活",
-            description: "这是对分类的描述信息",
-            action: ["delete", "update"]
-        }]
-        this.$store.state.dashboard.target = target
-        this.$store.state.dashboard.items = items
+        axios.get('/api/admin_category.json')
+        .then((result) => {
+            this.result = result.data
+            let dashboard = {
+                target: this.result.target,
+                items: this.result.items
+            }
+            this.$store.dispatch('updateDashboard', dashboard)
+        })
     }
 }
 </script>

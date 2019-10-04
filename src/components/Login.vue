@@ -47,10 +47,10 @@ export default {
           // let username = this.formInfo.username
           // console.log("username:", username)
           this.$store.dispatch('updateUsername', username)
+          // 跳转到首页
+          this.$router.push('/')
         }
       )
-      // 跳转到首页
-      this.$router.push('/')
     }
   }
 }

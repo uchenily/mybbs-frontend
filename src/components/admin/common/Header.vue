@@ -2,10 +2,10 @@
     <div class='header'>
         <div class='logo'><router-link to='/'>MYBBS</router-link></div>
         <ul class='menu'>
-            <li><a @click="categoryManagement()">分类管理</a></li> 
-            <li><a @click="userManagement()">用户管理</a></li> 
-            <li><a @click="topicManagement()">帖子管理</a></li> 
-            <li><a @clikc="replyManagement()">评论管理</a></li> 
+            <li><a @click="management('category')">分类管理</a></li> 
+            <li><a @click="management('user')">用户管理</a></li> 
+            <li><a @click="management('topic')">帖子管理</a></li> 
+            <li><a @click="management('reply')">评论管理</a></li> 
         </ul>
         <div class='user logout'>
             <div>欢迎, {{ this.$store.state.username }}</div>
@@ -15,66 +15,20 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     name: "AdminHeader",
     methods: {
-        categoryManagement () {
-            let target =  "category"
-            let items = [{
-                id: 1001,
-                name: "生活",
-                description: "这是对分类的描述信息",
-                action: ["delete", "update"]
-            },{
-                id: 1002,
-                name: "生活",
-                description: "这是对分类的描述信息",
-                action: ["delete", "update"]
-            },{
-                id: 1003,
-                name: "生活",
-                description: "这是对分类的描述信息",
-                action: ["delete", "update"]
-            },{
-                id: 1004,
-                name: "生活",
-                description: "这是对分类的描述信息",
-                action: ["delete", "update"]
-            },{
-                id: 1005,
-                name: "生活",
-                description: "这是对分类的描述信息",
-                action: ["delete", "update"]
-            }]
-            let dashboard = {
-                target: target,
-                items: items
-            }
-            this.$store.dispatch('updateDashboard', dashboard)
-        },
-        userManagement () {
-            let target = "users"
-            let items = [{
-                id: 2001,
-                name: "zhangsan",
-                update_at: "0000-00-00",
-                action: ["update", "delete"]
-            },{
-                id: 2002,
-                name: "zhangsan",
-                update_at: "0000-00-00",
-                action: ["update", "delete"]
-            },{
-                id: 2003,
-                name: "zhangsan",
-                update_at: "0000-00-00",
-                action: ["update", "delete"]
-            }]
-            let dashboard = {
-                target: target,
-                items: items
-            }
-            this.$store.dispatch('updateDashboard', dashboard)
+        management (type) {
+            axios.get('/api/admin_' + type + '.json')
+            .then((result) => {
+                this.result = result.data
+                let dashboard = {
+                    target: this.result.target,
+                    items: this.result.items
+                }
+                this.$store.dispatch('updateDashboard', dashboard)
+            })
         }
     }
 }
